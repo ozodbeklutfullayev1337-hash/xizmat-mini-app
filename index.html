@@ -88,6 +88,7 @@
         }
         .modal-content {
             background: #111827; border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 18px; padding: 16px; width: 100%; max-width: 380px;
+            max-height: 80vh; overflow-y: auto;
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
         .modal-header h3 { font-size: 15px; color: #fff; }
@@ -100,11 +101,12 @@
             border-radius: 8px; color: #fff; font-size: 13px; outline: none;
         }
 
-        .portfolio-item {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 10px; margin-bottom: 8px; cursor: pointer;
+        .portfolio-item, .admin-order-item {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 10px; padding: 10px; margin-bottom: 8px;
         }
-        .portfolio-item h4 { font-size: 12px; color: #c084fc; margin-bottom: 2px; }
-        .portfolio-item p { font-size: 11px; color: var(--text-muted); }
+        .portfolio-item { cursor: pointer; }
+        .portfolio-item h4, .admin-order-item h4 { font-size: 12px; color: #c084fc; margin-bottom: 2px; }
+        .portfolio-item p, .admin-order-item p { font-size: 11px; color: var(--text-muted); }
 
         .floating-btn {
             position: fixed; bottom: 16px; right: 16px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
@@ -134,7 +136,6 @@
             <button class="cat-btn" onclick="filterCards('web', this)">Veb-Saytlar</button>
             <button class="cat-btn" onclick="filterCards('bot', this)">Botlar</button>
             <button class="cat-btn" onclick="filterCards('design', this)">Dizayn & SMM</button>
-            <!-- Faqat admin uchun chiqadigan kategoriya tugmasi dasturda dinamik qo'shiladi -->
         </div>
 
         <div class="services-grid">
@@ -230,14 +231,32 @@
         </div>
     </div>
 
-    <a href="https://t.me/ai06cq" class="floating-btn" target="_blank">💬</a>
+    <!-- Admin Panel modal -->
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📊 Admin Panel (Buyurtmalar)</h3>
+                <button class="close-btn" onclick="closeAdminModal()">&times;</button>
+            </div>
+            <div id="adminModalBody">
+                <p style="font-size:12px; color:var(--text-muted);">Yuklanmoqda...</p>
+            </div>
+        </div>
+    </div>
+
+    <a id="floatingChatBtn" href="#" class="floating-btn" target="_blank">💬</a>
 
     <script>
         let tg = window.Telegram.WebApp;
         tg.expand();
 
-        // Faqat sizning ID'ingiz tekshiriladi
         const ADMIN_ID = 6515742580;
+        
+        // Bog'lanish tugmasini ID orqali to'g'rilash
+        document.getElementById('floatingChatBtn').href = `https://t.me/${ADMIN_ID}`;
+
+        let localOrders = JSON.parse(localStorage.getItem('my_orders') || '[]');
+
         if (tg.initDataUnsafe && tg.initDataUnsafe.user && tg.initDataUnsafe.user.id === ADMIN_ID) {
             const catContainer = document.getElementById('categoriesContainer');
             const adminBtn = document.createElement('button');
@@ -246,9 +265,7 @@
             adminBtn.style.color = '#fff';
             adminBtn.innerHTML = '📊 Admin Panel';
             adminBtn.onclick = function() {
-                // Botga buyurtmalarni ko'rsatish buyrug'ini yuboramiz
-                tg.sendData(JSON.stringify({ action: 'get_orders' }));
-                tg.close();
+                openAdminModal();
             };
             catContainer.appendChild(adminBtn);
         }
@@ -278,8 +295,44 @@
             }
 
             const orderData = { service: selectedService, name: name, phone: phone };
+            
+            localOrders.push({
+                service: selectedService,
+                name: name,
+                phone: phone,
+                time: new Date().toLocaleTimeString()
+            });
+            localStorage.setItem('my_orders', JSON.stringify(localOrders));
+
             tg.sendData(JSON.stringify(orderData));
-            tg.close(); // Ma'lumot yuborilib botga o'tgach mini app yopiladi
+            
+            closeOrderModal();
+            alert("✅ Buyurtmangiz tasdiqlandi! Tez orada tayyor bo'ladi.");
+        }
+
+        function openAdminModal() {
+            const modalBody = document.getElementById('adminModalBody');
+            if (localOrders.length === 0) {
+                modalBody.innerHTML = `<p style="font-size:12px; color:var(--text-muted);">Hozircha buyurtmalar yo'q.</p>`;
+            } else {
+                let html = '';
+                localOrders.forEach((o, index) => {
+                    html += `
+                        <div class="admin-order-item">
+                            <h4>#${index + 1} - ${o.service}</h4>
+                            <p><b>Ism:</b> ${o.name}</p>
+                            <p><b>Tel:</b> ${o.phone}</p>
+                            <p><b>Vaqt:</b> ${o.time}</p>
+                        </div>
+                    `;
+                });
+                modalBody.innerHTML = html;
+            }
+            document.getElementById('adminModal').style.display = 'flex';
+        }
+
+        function closeAdminModal() {
+            document.getElementById('adminModal').style.display = 'none';
         }
 
         const portfolios = {
@@ -288,14 +341,14 @@
                 { title: "🏢 'Atlas Group' Logistics", desc: "Logistika kompaniyasi uchun korporativ veb-sayt.", url: "https://xizmat-mini-app.vercel.app" }
             ],
             bot: [
-                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma tizimi.", url: "https://t.me/ai06cq" },
-                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish boti.", url: "https://t.me/ai06cq" }
+                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma tizimi.", url: `https://t.me/${ADMIN_ID}` },
+                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish boti.", url: `https://t.me/${ADMIN_ID}` }
             ],
             ads: [
-                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari.", url: "https://t.me/ai06cq" }
+                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari.", url: `https://t.me/${ADMIN_ID}` }
             ],
             logo: [
-                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: "https://t.me/ai06cq" }
+                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: `https://t.me/${ADMIN_ID}` }
             ]
         };
 
