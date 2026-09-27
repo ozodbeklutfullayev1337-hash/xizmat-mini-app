@@ -8,13 +8,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Yangi futuristik va qimmatbaho ranglar palitrasi */
             --bg-color: #020408;
             --card-bg: rgba(255, 255, 255, 0.02);
             --card-border: rgba(56, 189, 248, 0.12);
             --text-color: #f1f5f9;
             --text-muted: #94a3b8;
-            /* Neon Cyan va Cyber Blue gradienti */
             --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
             --btn-hover: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
             --gold-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
@@ -31,7 +29,6 @@
             overflow-x: hidden;
         }
 
-        /* Orqa fondagi o'ta zamonaviy cyber neon nurlar (Binafshasiz!) */
         .cyber-glow {
             position: fixed; width: 350px; height: 350px; filter: blur(120px); border-radius: 50%; z-index: -1; opacity: 0.25;
             animation: moveGlow 10s ease-in-out infinite alternate;
@@ -46,11 +43,7 @@
 
         .container { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
 
-        /* Header dizayni */
-        header {
-            text-align: center;
-            margin-bottom: 24px;
-        }
+        header { text-align: center; margin-bottom: 24px; }
 
         .brand-badge {
             display: inline-flex; align-items: center; gap: 6px; background: rgba(14, 165, 233, 0.08);
@@ -61,12 +54,10 @@
         header h1 {
             font-size: 28px; font-weight: 800; background: var(--accent-gradient);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;
-            letter-spacing: -0.5px;
         }
 
         header p { font-size: 13px; color: var(--text-muted); font-weight: 400; }
 
-        /* Cyberpunk VIP Banner */
         .cyber-banner {
             background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(59, 130, 246, 0.08));
             border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 20px; padding: 16px; margin-bottom: 20px; text-align: center;
@@ -75,7 +66,6 @@
         .cyber-banner h4 { font-size: 14px; font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
         .cyber-banner p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
-        /* Kategoriya tugmalari (Cyber uslubda) */
         .categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
         .cat-btn {
@@ -87,12 +77,10 @@
             box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4); transform: translateY(-1px);
         }
 
-        /* Kartochkalar (Glassmorphism & Neon border) */
         .services-grid { display: flex; flex-direction: column; gap: 18px; }
         .card {
             background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px); border-radius: 24px; padding: 22px; transition: all 0.4s ease;
-            position: relative; overflow: hidden;
+            border-radius: 24px; padding: 22px; transition: all 0.4s ease;
         }
         .card:hover {
             border-color: rgba(56, 189, 248, 0.5);
@@ -105,7 +93,7 @@
             font-size: 26px; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.15);
             width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 16px;
         }
-        .card h3 { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; }
+        .card h3 { font-size: 17px; font-weight: 700; color: #ffffff; }
         .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
 
         .features-list { list-style: none; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
@@ -114,7 +102,6 @@
 
         .sample-link {
             display: inline-block; font-size: 12px; color: #38bdf8; text-decoration: none; margin-bottom: 16px; font-weight: 600; cursor: pointer;
-            transition: color 0.2s;
         }
         .sample-link:hover { color: #7dd3fc; text-decoration: underline; }
 
@@ -127,9 +114,7 @@
             transition: all 0.3s ease;
         }
         button:hover { background: var(--btn-hover); transform: translateY(-1px); }
-        button:active { transform: scale(0.97); }
 
-        /* Modal oyna dizayni */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
@@ -146,19 +131,16 @@
         .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .form-group input {
             width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border);
-            border-radius: 12px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s;
+            border-radius: 12px; color: #fff; font-size: 14px; outline: none;
         }
-        .form-group input:focus { border-color: #0ea5e9; box-shadow: 0 0 12px rgba(14, 165, 233, 0.3); }
 
         .portfolio-item, .admin-order-item {
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 14px; margin-bottom: 10px;
         }
-        .portfolio-item { cursor: pointer; transition: border-color 0.2s; }
-        .portfolio-item:hover { border-color: #0ea5e9; }
+        .portfolio-item { cursor: pointer; }
         .portfolio-item h4, .admin-order-item h4 { font-size: 13px; color: #38bdf8; margin-bottom: 4px; font-weight: 600; }
         .portfolio-item p, .admin-order-item p { font-size: 12px; color: var(--text-muted); }
 
-        /* Suzuvchi aloqa tugmasi */
         .floating-btn {
             position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #0ea5e9, #2563eb); color: white;
             width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px;
@@ -191,7 +173,6 @@
         </div>
 
         <div class="services-grid">
-            <!-- 1. Web Sayt -->
             <div class="card" data-category="web">
                 <div class="card-header"><div class="card-icon">🚀</div><div><h3>Web Sayt Yasash</h3></div></div>
                 <p>Brendingiz uchun mukammal raqamli yuz va yuqori konversiyali savdo maydoni.</p>
@@ -207,7 +188,6 @@
                 </div>
             </div>
 
-            <!-- 2. Telegram Bot -->
             <div class="card" data-category="bot">
                 <div class="card-header"><div class="card-icon">🤖</div><div><h3>Telegram Bot</h3></div></div>
                 <p>Mijozlarni avtomatik qabul qiluvchi va biznesni to'liq avtomatlashtiruvchi botlar.</p>
@@ -223,7 +203,6 @@
                 </div>
             </div>
 
-            <!-- 3. Reklama Postlar -->
             <div class="card" data-category="design">
                 <div class="card-header"><div class="card-icon">📢</div><div><h3>Reklama Postlar Yasash</h3></div></div>
                 <p>Sotuvni portlatuvchi va e'tiborni bir zumda tortuvchi professional SMM postlar.</p>
@@ -239,7 +218,6 @@
                 </div>
             </div>
 
-            <!-- 4. Logotip Yasash -->
             <div class="card" data-category="design">
                 <div class="card-header"><div class="card-icon">🎨</div><div><h3>Logotip Yasash</h3></div></div>
                 <p>Kompaniyangiz uchun esda qolarli, o'ziga xos va qimmatbaho brend identifikatsiyasi.</p>
@@ -307,7 +285,8 @@
         tg.expand();
 
         const ADMIN_ID = 6515742580;
-        document.getElementById('floatingChatBtn').href = 'https://t.me/' + ADMIN_ID;
+        const ADMIN_USERNAME = "oquda";
+        document.getElementById('floatingChatBtn').href = 'https://t.me/' + ADMIN_USERNAME;
 
         let localOrders = JSON.parse(localStorage.getItem('my_orders') || '[]');
 
@@ -393,14 +372,14 @@
                 { title: "🏢 'Atlas Group' Logistics", desc: "Logistika kompaniyasi uchun korporativ veb-sayt.", url: "https://xizmat-mini-app.vercel.app" }
             ],
             bot: [
-                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma tizimi.", url: 'https://t.me/' + ADMIN_ID },
-                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish boti.", url: 'https://t.me/' + ADMIN_ID }
+                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma tizimi.", url: 'https://t.me/' + ADMIN_USERNAME },
+                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish boti.", url: 'https://t.me/' + ADMIN_USERNAME }
             ],
             ads: [
-                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari.", url: 'https://t.me/' + ADMIN_ID }
+                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari.", url: 'https://t.me/' + ADMIN_USERNAME }
             ],
             logo: [
-                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: 'https://t.me/' + ADMIN_ID }
+                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: 'https://t.me/' + ADMIN_USERNAME }
             ]
         };
 
