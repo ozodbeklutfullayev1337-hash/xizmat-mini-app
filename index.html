@@ -17,12 +17,7 @@
             --btn-hover: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
 
         body {
             background-color: var(--bg-color);
@@ -33,391 +28,100 @@
             overflow-x: hidden;
         }
 
-        .bg-glow {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #6366f1, #a855f7);
-            filter: blur(80px);
-            border-radius: 50%;
-            top: -50px;
-            left: -50px;
-            z-index: -1;
-            opacity: 0.4;
-            animation: pulseGlow 6s ease-in-out infinite alternate;
+        .bg-glow, .bg-glow-2 {
+            position: absolute; width: 250px; height: 250px; filter: blur(80px); border-radius: 50%; z-index: -1; opacity: 0.4;
         }
+        .bg-glow { background: linear-gradient(135deg, #6366f1, #a855f7); top: -50px; left: -50px; }
+        .bg-glow-2 { background: linear-gradient(135deg, #ec4899, #6366f1); bottom: 10px; right: -50px; }
 
-        .bg-glow-2 {
-            position: absolute;
-            width: 250px;
-            height: 250px;
-            background: linear-gradient(135deg, #ec4899, #6366f1);
-            filter: blur(90px);
-            border-radius: 50%;
-            bottom: 10px;
-            right: -50px;
-            z-index: -1;
-            opacity: 0.3;
-            animation: pulseGlow 8s ease-in-out infinite alternate;
-        }
-
-        .container {
-            max-width: 480px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 16px;
-            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        .container { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
+        header { text-align: center; margin-bottom: 16px; }
 
         .status-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(34, 197, 94, 0.1);
-            border: 1px solid rgba(34, 197, 94, 0.2);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            color: #4ade80;
-            margin-bottom: 10px;
+            display: inline-flex; align-items: center; gap: 6px; background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.2); padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; color: #4ade80; margin-bottom: 10px;
         }
+        .status-dot { width: 6px; height: 6px; background-color: #4ade80; border-radius: 50%; box-shadow: 0 0 8px #4ade80; }
 
-        .status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #4ade80;
-            border-radius: 50%;
-            box-shadow: 0 0 8px #4ade80;
-            animation: blink 2s infinite;
-        }
-
-        header h1 {
-            font-size: 24px;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
-        }
-
-        header p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
+        header h1 { font-size: 24px; font-weight: 800; background: var(--accent-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 4px; }
+        header p { font-size: 13px; color: var(--text-muted); }
 
         .promo-banner {
             background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(168, 85, 247, 0.15));
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 16px;
-            padding: 14px;
-            margin-bottom: 16px;
-            text-align: center;
+            border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 14px; margin-bottom: 16px; text-align: center;
         }
+        .promo-banner h4 { font-size: 14px; font-weight: 700; color: #f472b6; margin-bottom: 4px; }
+        .promo-banner p { font-size: 12px; color: var(--text-muted); }
 
-        .promo-banner h4 {
-            font-size: 14px;
-            font-weight: 700;
-            color: #f472b6;
-            margin-bottom: 4px;
-        }
-
-        .promo-banner p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .categories {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding-bottom: 8px;
-            margin-bottom: 16px;
-            scrollbar-width: none;
-        }
-        .categories::-webkit-scrollbar {
-            display: none;
-        }
-
+        .categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; scrollbar-width: none; }
         .cat-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 600;
-            white-space: nowrap;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px 16px;
+            border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s ease;
         }
+        .cat-btn.active, .cat-btn:hover { background: var(--accent-gradient); color: white; border-color: transparent; }
 
-        .cat-btn.active, .cat-btn:hover {
-            background: var(--accent-gradient);
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 4px 20px rgba(168, 85, 247, 0.4);
-        }
+        .services-grid { display: flex; flex-direction: column; gap: 16px; }
+        .card { background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(25px); border-radius: 22px; padding: 20px; }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .card-icon { font-size: 26px; background: rgba(255, 255, 255, 0.05); width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; border-radius: 14px; }
+        .card h3 { font-size: 16px; font-weight: 700; color: #ffffff; }
+        .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
 
-        .services-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+        .features-list { list-style: none; margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
+        .features-list li { font-size: 12px; color: #cbd5e1; display: flex; align-items: center; gap: 8px; }
+        .features-list li::before { content: "✓"; color: #c084fc; font-weight: bold; }
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
-            border-radius: 22px;
-            padding: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-        }
+        .sample-link { display: inline-block; font-size: 12px; color: #818cf8; text-decoration: none; margin-bottom: 14px; font-weight: 600; cursor: pointer; }
+        .sample-link:hover { text-decoration: underline; }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-
-        .card-icon {
-            font-size: 26px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 14px;
-        }
-
-        .card h3 {
-            font-size: 16px;
-            font-weight: 700;
-            color: #ffffff;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.5;
-        }
-
-        .features-list {
-            list-style: none;
-            margin-bottom: 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .features-list li {
-            font-size: 12px;
-            color: #cbd5e1;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .features-list li::before {
-            content: "✓";
-            color: #c084fc;
-            font-weight: bold;
-        }
-
-        .sample-link {
-            display: inline-block;
-            font-size: 12px;
-            color: #818cf8;
-            text-decoration: none;
-            margin-bottom: 14px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .sample-link:hover {
-            color: #a855f7;
-            text-decoration: underline;
-        }
-
-        .card-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.06);
-            padding-top: 14px;
-        }
-
-        .price-tag {
-            font-size: 13px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #c084fc, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 14px; }
+        .price-tag { font-size: 13px; font-weight: 700; background: linear-gradient(135deg, #c084fc, #f472b6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         button {
-            padding: 10px 16px;
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-            transition: all 0.3s ease;
+            padding: 10px 16px; background: var(--accent-gradient); color: white; border: none; border-radius: 12px;
+            font-size: 12px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4); transition: transform 0.2s;
         }
+        button:hover { transform: translateY(-1px); }
 
-        button:hover {
-            background: var(--btn-hover);
-            transform: translateY(-1px);
-        }
-
-        /* Modal */
+        /* Modal oynalar (Buyurtma va Namunalar uchun) */
         .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(6, 9, 19, 0.85);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(6, 9, 19, 0.85); backdrop-filter: blur(10px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
         }
-
         .modal-content {
-            background: #111827;
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 20px;
-            padding: 20px;
-            width: 100%;
-            max-width: 400px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            background: #111827; border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 20px; padding: 20px; width: 100%; max-width: 400px;
         }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; }
+        .modal-header h3 { font-size: 16px; color: #fff; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; }
 
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 14px;
+        /* Form dizayni */
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+        .form-group input {
+            width: 100%; padding: 12px; background: rgba(255,255,255,0.05); border: 1px solid var(--card-border);
+            border-radius: 10px; color: #fff; font-size: 14px; outline: none;
         }
-
-        .modal-header h3 {
-            font-size: 16px;
-            color: #fff;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            font-size: 20px;
-            cursor: pointer;
-            padding: 0;
-            box-shadow: none;
-        }
+        .form-group input:focus { border-color: #a855f7; }
 
         .portfolio-item {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: border-color 0.2s;
+            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 12px; padding: 12px; margin-bottom: 10px; cursor: pointer;
         }
+        .portfolio-item:hover { border-color: #a855f7; }
+        .portfolio-item h4 { font-size: 13px; color: #c084fc; margin-bottom: 4px; }
+        .portfolio-item p { font-size: 12px; color: var(--text-muted); }
 
-        .portfolio-item:hover {
-            border-color: #a855f7;
-        }
-
-        .portfolio-item h4 {
-            font-size: 13px;
-            color: #c084fc;
-            margin-bottom: 4px;
-        }
-
-        .portfolio-item p {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        .reviews-section {
-            margin-top: 24px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 20px;
-            padding: 18px;
-        }
-
-        .reviews-section h3 {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .review-card {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 12px;
-            padding: 12px;
-            margin-bottom: 10px;
-        }
-
-        .review-author {
-            font-size: 12px;
-            font-weight: 700;
-            color: #e2e8f0;
-            margin-bottom: 2px;
-        }
-
-        .review-stars {
-            color: #fbbf24;
-            font-size: 11px;
-            margin-bottom: 6px;
-        }
-
-        .review-text {
-            font-size: 11px;
-            color: var(--text-muted);
-            line-height: 1.4;
-        }
+        .reviews-section { margin-top: 24px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px; padding: 18px; }
+        .reviews-section h3 { font-size: 15px; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .review-card { background: rgba(255, 255, 255, 0.02); border-radius: 12px; padding: 12px; margin-bottom: 10px; }
+        .review-author { font-size: 12px; font-weight: 700; color: #e2e8f0; margin-bottom: 2px; }
+        .review-stars { color: #fbbf24; font-size: 11px; margin-bottom: 6px; }
+        .review-text { font-size: 11px; color: var(--text-muted); line-height: 1.4; }
 
         .floating-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5);
-            z-index: 100;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.3s;
-        }
-
-        .floating-btn:hover {
-            transform: scale(1.1);
+            position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
+            width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px;
+            box-shadow: 0 6px 20px rgba(34, 197, 94, 0.5); z-index: 100; text-decoration: none;
         }
     </style>
 </head>
@@ -427,10 +131,7 @@
 
     <div class="container">
         <header>
-            <div class="status-badge">
-                <div class="status-dot"></div>
-                Buyurtmalar ochiq
-            </div>
+            <div class="status-badge"><div class="status-dot"></div>Buyurtmalar ochiq</div>
             <h1>Professional Xizmatlar</h1>
             <p>Biznesingiz uchun eng sara digital yechimlar</p>
         </header>
@@ -448,12 +149,8 @@
         </div>
 
         <div class="services-grid">
-            <!-- 1. Web Sayt -->
             <div class="card" data-category="web">
-                <div class="card-header">
-                    <div class="card-icon">🚀</div>
-                    <div><h3>Web Sayt Yasash</h3></div>
-                </div>
+                <div class="card-header"><div class="card-icon">🚀</div><div><h3>Web Sayt Yasash</h3></div></div>
                 <p>Biznesingiz uchun mukammal internet yuzasi va savdo maydonchasi.</p>
                 <ul class="features-list">
                     <li>Zamonaviy va mukammal UI/UX dizayn</li>
@@ -463,16 +160,12 @@
                 <a class="sample-link" onclick="openPortfolio('web')">📂 Ishlar namunasini ko'rish →</a>
                 <div class="card-footer">
                     <div class="price-tag">Kelishilgan narxda</div>
-                    <button onclick="sendOrder('Web sayt yasash')">Buyurtma berish</button>
+                    <button onclick="openOrderModal('Web sayt yasash')">Buyurtma berish</button>
                 </div>
             </div>
 
-            <!-- 2. Telegram Bot -->
             <div class="card" data-category="bot">
-                <div class="card-header">
-                    <div class="card-icon">🤖</div>
-                    <div><h3>Telegram Bot</h3></div>
-                </div>
+                <div class="card-header"><div class="card-icon">🤖</div><div><h3>Telegram Bot</h3></div></div>
                 <p>Mijozlarni avtomatik qabul qilish va buyurtmalarni boshqarish botlari.</p>
                 <ul class="features-list">
                     <li>24/7 ishlaydigan avtomatlashgan tizim</li>
@@ -482,16 +175,12 @@
                 <a class="sample-link" onclick="openPortfolio('bot')">📂 Ishlar namunasini ko'rish →</a>
                 <div class="card-footer">
                     <div class="price-tag">Yuqori sifat</div>
-                    <button onclick="sendOrder('Telegram Bot')">Buyurtma berish</button>
+                    <button onclick="openOrderModal('Telegram Bot')">Buyurtma berish</button>
                 </div>
             </div>
 
-            <!-- 3. Reklama Postlar -->
             <div class="card" data-category="design">
-                <div class="card-header">
-                    <div class="card-icon">📢</div>
-                    <div><h3>Reklama Postlar Yasash</h3></div>
-                </div>
+                <div class="card-header"><div class="card-icon">📢</div><div><h3>Reklama Postlar Yasash</h3></div></div>
                 <p>Sotuvni oshiruvchi va e'tiborni tortuvchi professional SMM postlar.</p>
                 <ul class="features-list">
                     <li>Diqqatni tortuvchi matnlar va copywriting</li>
@@ -501,16 +190,12 @@
                 <a class="sample-link" onclick="openPortfolio('ads')">📂 Ishlar namunasini ko'rish →</a>
                 <div class="card-footer">
                     <div class="price-tag">Eksklyuziv</div>
-                    <button onclick="sendOrder('Reklama Postlar Yasash')">Buyurtma berish</button>
+                    <button onclick="openOrderModal('Reklama Postlar Yasash')">Buyurtma berish</button>
                 </div>
             </div>
 
-            <!-- 4. Logotip Yasash -->
             <div class="card" data-category="design">
-                <div class="card-header">
-                    <div class="card-icon">🎨</div>
-                    <div><h3>Logotip Yasash</h3></div>
-                </div>
+                <div class="card-header"><div class="card-icon">🎨</div><div><h3>Logotip Yasash</h3></div></div>
                 <p>Brendingiz uchun o'ziga xos, esda qolarli va noyob logotip yaratish.</p>
                 <ul class="features-list">
                     <li>Noyob va professional konsepsiya</li>
@@ -520,7 +205,7 @@
                 <a class="sample-link" onclick="openPortfolio('logo')">📂 Ishlar namunasini ko'rish →</a>
                 <div class="card-footer">
                     <div class="price-tag">Premium</div>
-                    <button onclick="sendOrder('Logotip Yasash')">Buyurtma berish</button>
+                    <button onclick="openOrderModal('Logotip Yasash')">Buyurtma berish</button>
                 </div>
             </div>
         </div>
@@ -532,47 +217,94 @@
                 <div class="review-stars">★★★★★</div>
                 <div class="review-text">"Bot va veb-sayt buyurtma qilgandim. Juda tez va sifatli qilib berishdi. Ishlariga omad!"</div>
             </div>
-            <div class="review-card">
-                <div class="review-author">Jasur Karimov</div>
-                <div class="review-stars">★★★★★</div>
-                <div class="review-text">"Reklama postlari va logotip dizayni juda yoqdi. Professional yondashuv uchun rahmat."</div>
-            </div>
         </div>
     </div>
 
-    <!-- Portfolio Modal Oynasi (Haqiqiy havolalar bilan) -->
+    <!-- Buyurtma berish uchun ma'lumot kiritish oynasi (Modal) -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="orderModalTitle">Buyurtmani rasmiylashtirish</h3>
+                <button class="close-btn" onclick="closeOrderModal()">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Ismingiz:</label>
+                <input type="text" id="clientName" placeholder="Masalan: Azizbek">
+            </div>
+            <div class="form-group">
+                <label>Telefon raqamingiz:</label>
+                <input type="tel" id="clientPhone" placeholder="+998 90 123 45 67">
+            </div>
+            <button style="width: 100%; margin-top: 10px;" onclick="submitOrder()">Tasdiqlash va yuborish</button>
+        </div>
+    </div>
+
+    <!-- Portfolio Namunalar Modal Oynasi -->
     <div id="portfolioModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 id="modalTitle">Ishlar Namunalari</h3>
+                <h3>Ishlar Namunalari</h3>
                 <button class="close-btn" onclick="closePortfolio()">&times;</button>
             </div>
-            <div id="modalBody">
-                <!-- Dinamik to'ldiriladi -->
-            </div>
+            <div id="modalBody"></div>
         </div>
     </div>
 
     <a href="https://t.me/ai06cq" class="floating-btn" target="_blank" title="Menejer bilan bog'lanish">💬</a>
 
     <script>
-        // Bosganda to'g'ridan-to'g'ri o'sha namuna sahifasiga yoki kanalga o'tadigan havolalar
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+
+        let selectedService = "";
+
+        function openOrderModal(serviceName) {
+            selectedService = serviceName;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+        }
+
+        function submitOrder() {
+            const name = document.getElementById('clientName').value.trim();
+            const phone = document.getElementById('clientPhone').value.trim();
+
+            if (!name || !phone) {
+                alert("Iltimos, ismingiz va telefon raqamingizni kiriting!");
+                return;
+            }
+
+            if (tg.HapticFeedback) {
+                tg.HapticFeedback.impactOccurred('medium');
+            }
+
+            // Ma'lumotlarni botga yuborish
+            const orderData = {
+                service: selectedService,
+                name: name,
+                phone: phone
+            };
+
+            tg.sendData(JSON.stringify(orderData));
+            tg.close();
+        }
+
         const portfolios = {
             web: [
-                { title: "🌐 'Apex Pizza' E-commerce", desc: "Onlayn restoran veb-sayti va React admin paneli.", url: "https://xizmat-mini-app.vercel.app" },
+                { title: "🌐 'Apex Pizza' E-commerce", desc: "Onlayn restoran veb-sayti va admin paneli.", url: "https://xizmat-mini-app.vercel.app" },
                 { title: "🏢 'Atlas Group' Logistics", desc: "Logistika kompaniyasi uchun korporativ veb-sayt.", url: "https://xizmat-mini-app.vercel.app" }
             ],
             bot: [
-                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma va xizmat tizimi.", url: "https://t.me/ai06cq" },
-                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish avtomatlashgan boti.", url: "https://t.me/ai06cq" }
+                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma tizimi.", url: "https://t.me/ai06cq" },
+                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish boti.", url: "https://t.me/ai06cq" }
             ],
             ads: [
-                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari namunasi.", url: "https://t.me/ai06cq" },
-                { title: "🎬 Promo Video Konsepsiyalar", desc: "Mahsulotlar uchun tijoriy videolar namunasi.", url: "https://t.me/ai06cq" }
+                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari.", url: "https://t.me/ai06cq" }
             ],
             logo: [
-                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: "https://t.me/ai06cq" },
-                { title: "✨ 'Artclex' Publishing", desc: "Nashriyot va maqolalar kanali uchun logotip.", url: "https://t.me/ai06cq" }
+                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: "https://t.me/ai06cq" }
             ]
         };
 
@@ -590,7 +322,6 @@
                     </div>
                 `;
             });
-            
             modalBody.innerHTML = html;
             modal.style.display = 'flex';
         }
@@ -612,6 +343,5 @@
             });
         }
     </script>
-    <script src="app.js"></script>
 </body>
 </html>
