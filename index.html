@@ -3,18 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CQ STUDIO | Premium Services</title>
+    <title>CQ STUDIO | Elite Digital & Design</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #030712;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-color: #f9fafb;
-            --text-muted: #9ca3af;
-            --accent-gradient: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+            --bg-color: #07090e;
+            --card-bg: rgba(255, 255, 255, 0.025);
+            --card-border: rgba(255, 255, 255, 0.07);
+            --text-color: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
             --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            --glow-color: rgba(139, 92, 246, 0.15);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -23,79 +24,87 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
-            padding: 20px 16px 90px 16px;
+            padding: 20px 16px 100px 16px;
             position: relative;
             overflow-x: hidden;
         }
 
-        .ambient-glow {
-            position: fixed; width: 300px; height: 300px; filter: blur(100px); border-radius: 50%; z-index: -1; opacity: 0.35;
-            animation: floatGlow 8s ease-in-out infinite alternate;
+        /* Orqa fondagi jonli elegant nurlar (Mesh Glow) */
+        .ambient-light {
+            position: fixed; width: 320px; height: 320px; filter: blur(110px); border-radius: 50%; z-index: -1; opacity: 0.3;
+            animation: pulseGlow 9s ease-in-out infinite alternate;
         }
-        .glow-1 { background: #6366f1; top: -100px; left: -100px; }
-        .glow-2 { background: #ec4899; bottom: -100px; right: -100px; animation-delay: 4s; }
+        .light-1 { background: #4f46e5; top: -100px; left: -100px; }
+        .light-2 { background: #db2777; bottom: -100px; right: -100px; animation-delay: 4.5s; }
 
-        @keyframes floatGlow {
-            0% { transform: translateY(0) scale(1); }
-            100% { transform: translateY(40px) scale(1.15); }
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.25; }
+            100% { transform: scale(1.2); opacity: 0.45; }
         }
 
         .container { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
 
+        /* Header dizayni */
         header {
             text-align: center;
             margin-bottom: 24px;
+            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .brand-badge {
-            display: inline-flex; align-items: center; gap: 6px; background: rgba(147, 51, 234, 0.1);
-            border: 1px solid rgba(147, 51, 234, 0.3); padding: 5px 14px; border-radius: 30px; font-size: 11px; font-weight: 700; color: #c084fc; margin-bottom: 12px;
-            text-transform: uppercase; letter-spacing: 1px;
+        .brand-pill {
+            display: inline-flex; align-items: center; gap: 6px; background: rgba(139, 92, 246, 0.08);
+            border: 1px solid rgba(139, 92, 246, 0.25); padding: 5px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; color: #c084fc; margin-bottom: 14px;
+            text-transform: uppercase; letter-spacing: 1.5px;
         }
 
         header h1 {
             font-size: 28px; font-weight: 800; background: var(--accent-gradient);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px;
+            letter-spacing: -0.5px;
         }
 
         header p { font-size: 13px; color: var(--text-muted); font-weight: 400; }
 
-        .vip-banner {
-            background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(219, 39, 119, 0.1));
-            border: 1px solid rgba(147, 51, 234, 0.25); border-radius: 20px; padding: 16px; margin-bottom: 20px; text-align: center;
-            backdrop-filter: blur(10px);
+        /* VIP Aksiya Banneri */
+        .elite-banner {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
+            border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 20px; padding: 16px; margin-bottom: 20px; text-align: center;
+            backdrop-filter: blur(12px); animation: fadeInUp 0.8s ease;
         }
-        .vip-banner h4 { font-size: 15px; font-weight: 700; color: #f472b6; margin-bottom: 4px; }
-        .vip-banner p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .elite-banner h4 { font-size: 14px; font-weight: 700; color: #f472b6; margin-bottom: 4px; }
+        .elite-banner p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
+        /* Kategoriya tugmalari */
         .categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
         .cat-btn {
             background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px 18px;
-            border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s ease;
+            border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .cat-btn.active, .cat-btn:hover {
             background: var(--accent-gradient); color: white; border-color: transparent;
-            box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4); transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); transform: translateY(-1px);
         }
 
+        /* Xizmatlar Grid va Kartochkalari */
         .services-grid { display: flex; flex-direction: column; gap: 18px; }
         .card {
             background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(20px);
-            border-radius: 24px; padding: 22px; transition: all 0.4s ease;
+            -webkit-backdrop-filter: blur(20px); border-radius: 24px; padding: 22px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; overflow: hidden; animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
         .card:hover {
-            border-color: rgba(147, 51, 234, 0.4);
+            border-color: rgba(139, 92, 246, 0.4);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
             transform: translateY(-2px);
         }
 
         .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
         .card-icon {
-            font-size: 28px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.08);
-            width: 54px; height: 54px; display: flex; align-items: center; justify-content: center; border-radius: 16px;
+            font-size: 26px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07);
+            width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 16px;
         }
-        .card h3 { font-size: 17px; font-weight: 700; color: #ffffff; }
+        .card h3 { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; }
         .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
 
         .features-list { list-style: none; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
@@ -104,73 +113,89 @@
 
         .sample-link {
             display: inline-block; font-size: 12px; color: #a855f7; text-decoration: none; margin-bottom: 16px; font-weight: 600; cursor: pointer;
+            transition: color 0.2s;
         }
         .sample-link:hover { color: #d8b4fe; text-decoration: underline; }
 
-        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.06); padding-top: 16px; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 16px; }
         .price-tag { font-size: 13px; font-weight: 700; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         button {
             padding: 10px 20px; background: var(--accent-gradient); color: white; border: none; border-radius: 14px;
-            font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(147, 51, 234, 0.4);
+            font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            transition: all 0.3s ease;
         }
+        button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        button:active { transform: scale(0.97); }
 
+        /* Modal oyna dizayni */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(3, 7, 18, 0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+            background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
+            animation: fadeIn 0.3s ease;
         }
         .modal-content {
-            background: #0f172a; border: 1px solid rgba(147, 51, 234, 0.35); border-radius: 24px; padding: 24px; width: 100%; max-width: 400px;
+            background: #0f1423; border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 24px; padding: 24px; width: 100%; max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
         .modal-header h3 { font-size: 17px; color: #fff; font-weight: 700; }
-        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; }
+        .close-btn { background: none; border: none; color: var(--text-muted); font-size: 20px; cursor: pointer; padding: 4px; box-shadow: none; }
 
         .form-group { margin-bottom: 14px; }
-        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; }
+        .form-group label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 6px; font-weight: 500; }
         .form-group input {
-            width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--card-border);
-            border-radius: 12px; color: #fff; font-size: 14px; outline: none;
+            width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border);
+            border-radius: 12px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s;
         }
+        .form-group input:focus { border-color: #8b5cf6; box-shadow: 0 0 12px rgba(139, 92, 246, 0.25); }
 
         .portfolio-item, .admin-order-item {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 14px; padding: 14px; margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 14px; margin-bottom: 10px;
         }
-        .portfolio-item { cursor: pointer; }
-        .portfolio-item h4, .admin-order-item h4 { font-size: 13px; color: #c084fc; margin-bottom: 4px; }
+        .portfolio-item { cursor: pointer; transition: border-color 0.2s; }
+        .portfolio-item:hover { border-color: #8b5cf6; }
+        .portfolio-item h4, .admin-order-item h4 { font-size: 13px; color: #c084fc; margin-bottom: 4px; font-weight: 600; }
         .portfolio-item p, .admin-order-item p { font-size: 12px; color: var(--text-muted); }
 
+        /* Suzuvchi aloqa tugmasi */
         .floating-btn {
             position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
             width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px;
-            box-shadow: 0 6px 25px rgba(34, 197, 94, 0.5); z-index: 100; text-decoration: none;
+            box-shadow: 0 6px 25px rgba(34, 197, 94, 0.5); z-index: 100; text-decoration: none; transition: transform 0.3s;
         }
+        .floating-btn:hover { transform: scale(1.1); }
+
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="ambient-glow glow-1"></div>
-    <div class="ambient-glow glow-2"></div>
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
 
     <div class="container">
         <header>
-            <div class="brand-badge">CQ STUDIO VIP</div>
-            <h1>Digital Solutions</h1>
-            <p>Biznesingiz uchun elita darajasidagi texnologiyalar</p>
+            <div class="brand-pill">✨ CQ STUDIO VIP</div>
+            <h1>Elite Digital Agency</h1>
+            <p>Biznesingiz uchun elita darajasidagi raqamli yechimlar</p>
         </header>
 
-        <div class="vip-banner">
-            <h4>VIP STATUS AKSIYA</h4>
+        <div class="elite-banner">
+            <h4>👑 MAXSUS VIP AKSIYA</h4>
             <p>Hozir buyurtma bering va shaxsiy menejer hamda 20% chegirmani qo'lga kiriting!</p>
         </div>
 
         <div class="categories" id="categoriesContainer">
             <button class="cat-btn active" onclick="filterCards('all', this)">Barchasi</button>
-            <button class="cat-btn" onclick="filterCards('web', this)">Web-Saytlar</button>
+            <button class="cat-btn" onclick="filterCards('web', this)">Veb-Saytlar</button>
             <button class="cat-btn" onclick="filterCards('bot', this)">Botlar</button>
             <button class="cat-btn" onclick="filterCards('design', this)">Dizayn & SMM</button>
         </div>
 
         <div class="services-grid">
+            <!-- 1. Web Sayt -->
             <div class="card" data-category="web">
                 <div class="card-header"><div class="card-icon">🚀</div><div><h3>Web Sayt Yasash</h3></div></div>
                 <p>Brendingiz uchun mukammal raqamli yuz va yuqori konversiyali savdo maydoni.</p>
@@ -186,6 +211,7 @@
                 </div>
             </div>
 
+            <!-- 2. Telegram Bot -->
             <div class="card" data-category="bot">
                 <div class="card-header"><div class="card-icon">🤖</div><div><h3>Telegram Bot</h3></div></div>
                 <p>Mijozlarni avtomatik qabul qiluvchi va biznesni to'liq avtomatlashtiruvchi botlar.</p>
@@ -201,6 +227,7 @@
                 </div>
             </div>
 
+            <!-- 3. Reklama Postlar -->
             <div class="card" data-category="design">
                 <div class="card-header"><div class="card-icon">📢</div><div><h3>Reklama Postlar Yasash</h3></div></div>
                 <p>Sotuvni portlatuvchi va e'tiborni bir zumda tortuvchi professional SMM postlar.</p>
@@ -216,6 +243,7 @@
                 </div>
             </div>
 
+            <!-- 4. Logotip Yasash -->
             <div class="card" data-category="design">
                 <div class="card-header"><div class="card-icon">🎨</div><div><h3>Logotip Yasash</h3></div></div>
                 <p>Kompaniyangiz uchun esda qolarli, o'ziga xos va qimmatbaho brend identifikatsiyasi.</p>
@@ -393,7 +421,7 @@
                         '</div>';
             });
             modalBody.innerHTML = html;
-            modal.style.display = 'flex';
+            document.getElementById('portfolioModal').style.display = 'flex';
         }
 
         function closePortfolio() {
