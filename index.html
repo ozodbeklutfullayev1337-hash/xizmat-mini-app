@@ -178,7 +178,6 @@
             border-radius: 22px;
             padding: 20px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
         }
 
         .card-header {
@@ -243,7 +242,6 @@
             margin-bottom: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: color 0.2s;
         }
         .sample-link:hover {
             color: #a855f7;
@@ -284,7 +282,7 @@
             transform: translateY(-1px);
         }
 
-        /* Modal (Namunalar oynasi) */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -308,7 +306,6 @@
             width: 100%;
             max-width: 400px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .modal-header {
@@ -339,6 +336,12 @@
             border-radius: 12px;
             padding: 12px;
             margin-bottom: 10px;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .portfolio-item:hover {
+            border-color: #a855f7;
         }
 
         .portfolio-item h4 {
@@ -415,27 +418,6 @@
 
         .floating-btn:hover {
             transform: scale(1.1);
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.3; }
-            100% { transform: scale(1.2); opacity: 0.6; }
-        }
-
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0.4; }
-            100% { opacity: 1; }
         }
     </style>
 </head>
@@ -558,7 +540,7 @@
         </div>
     </div>
 
-    <!-- Portfolio Modal Oynasi -->
+    <!-- Portfolio Modal Oynasi (Haqiqiy havolalar bilan) -->
     <div id="portfolioModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -566,31 +548,31 @@
                 <button class="close-btn" onclick="closePortfolio()">&times;</button>
             </div>
             <div id="modalBody">
-                <!-- Dinamik kontent -->
+                <!-- Dinamik to'ldiriladi -->
             </div>
         </div>
     </div>
 
-    <a href="https://t.me/SizningUsernameingiz" class="floating-btn" target="_blank" title="Menejer bilan bog'lanish">💬</a>
+    <a href="https://t.me/ai06cq" class="floating-btn" target="_blank" title="Menejer bilan bog'lanish">💬</a>
 
     <script>
-        // Professional namunalar bazasi
+        // Bosganda to'g'ridan-to'g'ri o'sha namuna sahifasiga yoki kanalga o'tadigan havolalar
         const portfolios = {
             web: [
-                { title: "🌐 'Apex Pizza' E-commerce", desc: "To'liq funksional onlayn restoran sayti va React admin paneli." },
-                { title: "🏢 'Atlas Group' Logistics", desc: "Logistika kompaniyasi uchun zamonaviy ko'p tilli korporativ veb-sayt." }
+                { title: "🌐 'Apex Pizza' E-commerce", desc: "Onlayn restoran veb-sayti va React admin paneli.", url: "https://xizmat-mini-app.vercel.app" },
+                { title: "🏢 'Atlas Group' Logistics", desc: "Logistika kompaniyasi uchun korporativ veb-sayt.", url: "https://xizmat-mini-app.vercel.app" }
             ],
             bot: [
-                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi to'liq buyurtma va xizmat ko'rsatish tizimi." },
-                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish va tranzaksiyalarni boshqarish avtomatlashgan boti." }
+                { title: "🤖 'Xizmat Express' Mini App", desc: "Telegram ichida ishlovchi buyurtma va xizmat tizimi.", url: "https://t.me/ai06cq" },
+                { title: "📦 'Poizon Uz' Buyurtma boti", desc: "Xitoydan tovarlar keltirish avtomatlashgan boti.", url: "https://t.me/ai06cq" }
             ],
             ads: [
-                { title: "📢 SMM Bannerlar to'plami", desc: "Instagram va Telegram uchun sotuvni 3x oshiruvchi jozibali reklama postlari." },
-                { title: "🎬 Promo Video Konsepsiyalar", desc: "Mahsulotlar uchun AI yordamida yaratilgan professional tijoriy videolar." }
+                { title: "📢 SMM Bannerlar to'plami", desc: "Sotuvni oshiruvchi jozibali reklama postlari namunasi.", url: "https://t.me/ai06cq" },
+                { title: "🎬 Promo Video Konsepsiyalar", desc: "Mahsulotlar uchun tijoriy videolar namunasi.", url: "https://t.me/ai06cq" }
             ],
             logo: [
-                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending uchun eksklyuziv logotip dizayni." },
-                { title: "✨ 'Artclex' Publishing", desc: "Nashriyot va maqolalar kanali uchun minimalist hamda zamonaviy logotip." }
+                { title: "🎨 'UNQX' Brand Identity", desc: "NFC aqlli kartochkalar va brending logotipi.", url: "https://t.me/ai06cq" },
+                { title: "✨ 'Artclex' Publishing", desc: "Nashriyot va maqolalar kanali uchun logotip.", url: "https://t.me/ai06cq" }
             ]
         };
 
@@ -602,8 +584,8 @@
             let html = '';
             data.forEach(item => {
                 html += `
-                    <div class="portfolio-item">
-                        <h4>${item.title}</h4>
+                    <div class="portfolio-item" onclick="window.open('${item.url}', '_blank')">
+                        <h4>${item.title} 🔗</h4>
                         <p>${item.desc}</p>
                     </div>
                 `;
