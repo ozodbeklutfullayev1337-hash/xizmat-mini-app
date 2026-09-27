@@ -23,7 +23,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
-            padding: 16px 14px 100px 14px; /* Pastki qism kengaytirildi */
+            padding: 16px 14px 100px 14px;
             position: relative;
             overflow-x: hidden;
         }
@@ -277,7 +277,7 @@
 
             const orderData = { service: selectedService, name: name, phone: phone };
             tg.sendData(JSON.stringify(orderData));
-            tg.close();
+            // tg.close() olib tashlandi, shunda xatolik bermaydi va to'g'ridan-to'g'ri yuboriladi
         }
 
         const portfolios = {
