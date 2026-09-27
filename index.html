@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CQ STUDIO | Elite Digital & Design</title>
+    <title>CQ STUDIO | Next-Gen Digital</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-color: #07090e;
-            --card-bg: rgba(255, 255, 255, 0.025);
-            --card-border: rgba(255, 255, 255, 0.07);
-            --text-color: #f8fafc;
+            /* Yangi futuristik va qimmatbaho ranglar palitrasi */
+            --bg-color: #020408;
+            --card-bg: rgba(255, 255, 255, 0.02);
+            --card-border: rgba(56, 189, 248, 0.12);
+            --text-color: #f1f5f9;
             --text-muted: #94a3b8;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
-            --gold-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            --glow-color: rgba(139, 92, 246, 0.15);
+            /* Neon Cyan va Cyber Blue gradienti */
+            --accent-gradient: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
+            --btn-hover: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #4f46e5 100%);
+            --gold-gradient: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -29,17 +31,17 @@
             overflow-x: hidden;
         }
 
-        /* Orqa fondagi jonli elegant nurlar (Mesh Glow) */
-        .ambient-light {
-            position: fixed; width: 320px; height: 320px; filter: blur(110px); border-radius: 50%; z-index: -1; opacity: 0.3;
-            animation: pulseGlow 9s ease-in-out infinite alternate;
+        /* Orqa fondagi o'ta zamonaviy cyber neon nurlar (Binafshasiz!) */
+        .cyber-glow {
+            position: fixed; width: 350px; height: 350px; filter: blur(120px); border-radius: 50%; z-index: -1; opacity: 0.25;
+            animation: moveGlow 10s ease-in-out infinite alternate;
         }
-        .light-1 { background: #4f46e5; top: -100px; left: -100px; }
-        .light-2 { background: #db2777; bottom: -100px; right: -100px; animation-delay: 4.5s; }
+        .glow-one { background: #0ea5e9; top: -120px; left: -120px; }
+        .glow-two { background: #2563eb; bottom: -120px; right: -120px; animation-delay: 5s; }
 
-        @keyframes pulseGlow {
-            0% { transform: scale(1); opacity: 0.25; }
-            100% { transform: scale(1.2); opacity: 0.45; }
+        @keyframes moveGlow {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(30px, 40px) scale(1.2); }
         }
 
         .container { max-width: 480px; margin: 0 auto; position: relative; z-index: 1; }
@@ -48,13 +50,12 @@
         header {
             text-align: center;
             margin-bottom: 24px;
-            animation: fadeInDown 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .brand-pill {
-            display: inline-flex; align-items: center; gap: 6px; background: rgba(139, 92, 246, 0.08);
-            border: 1px solid rgba(139, 92, 246, 0.25); padding: 5px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; color: #c084fc; margin-bottom: 14px;
-            text-transform: uppercase; letter-spacing: 1.5px;
+        .brand-badge {
+            display: inline-flex; align-items: center; gap: 6px; background: rgba(14, 165, 233, 0.08);
+            border: 1px solid rgba(14, 165, 233, 0.3); padding: 5px 16px; border-radius: 30px; font-size: 11px; font-weight: 700; color: #38bdf8; margin-bottom: 14px;
+            text-transform: uppercase; letter-spacing: 2px;
         }
 
         header h1 {
@@ -65,78 +66,77 @@
 
         header p { font-size: 13px; color: var(--text-muted); font-weight: 400; }
 
-        /* VIP Aksiya Banneri */
-        .elite-banner {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(236, 72, 153, 0.08));
-            border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 20px; padding: 16px; margin-bottom: 20px; text-align: center;
-            backdrop-filter: blur(12px); animation: fadeInUp 0.8s ease;
+        /* Cyberpunk VIP Banner */
+        .cyber-banner {
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.08), rgba(59, 130, 246, 0.08));
+            border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 20px; padding: 16px; margin-bottom: 20px; text-align: center;
+            backdrop-filter: blur(12px); box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .elite-banner h4 { font-size: 14px; font-weight: 700; color: #f472b6; margin-bottom: 4px; }
-        .elite-banner p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
+        .cyber-banner h4 { font-size: 14px; font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+        .cyber-banner p { font-size: 12px; color: var(--text-muted); line-height: 1.4; }
 
-        /* Kategoriya tugmalari */
+        /* Kategoriya tugmalari (Cyber uslubda) */
         .categories { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; scrollbar-width: none; }
         .categories::-webkit-scrollbar { display: none; }
         .cat-btn {
             background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-muted); padding: 8px 18px;
-            border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 30px; font-size: 12px; font-weight: 600; white-space: nowrap; cursor: pointer; transition: all 0.3s ease;
         }
         .cat-btn.active, .cat-btn:hover {
             background: var(--accent-gradient); color: white; border-color: transparent;
-            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4); transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4); transform: translateY(-1px);
         }
 
-        /* Xizmatlar Grid va Kartochkalari */
+        /* Kartochkalar (Glassmorphism & Neon border) */
         .services-grid { display: flex; flex-direction: column; gap: 18px; }
         .card {
-            background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px); border-radius: 24px; padding: 22px; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative; overflow: hidden; animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+            background: var(--card-bg); border: 1px solid var(--card-border); backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px); border-radius: 24px; padding: 22px; transition: all 0.4s ease;
+            position: relative; overflow: hidden;
         }
         .card:hover {
-            border-color: rgba(139, 92, 246, 0.4);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            border-color: rgba(56, 189, 248, 0.5);
+            box-shadow: 0 20px 40px rgba(14, 165, 233, 0.15);
             transform: translateY(-2px);
         }
 
         .card-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
         .card-icon {
-            font-size: 26px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.07);
+            font-size: 26px; background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.15);
             width: 52px; height: 52px; display: flex; align-items: center; justify-content: center; border-radius: 16px;
         }
         .card h3 { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; }
         .card p { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5; }
 
         .features-list { list-style: none; margin-bottom: 16px; display: flex; flex-direction: column; gap: 8px; }
-        .features-list li { font-size: 12px; color: #e2e8f0; display: flex; align-items: center; gap: 8px; }
-        .features-list li::before { content: "✦"; color: #c084fc; font-size: 10px; }
+        .features-list li { font-size: 12px; color: #cbd5e1; display: flex; align-items: center; gap: 8px; }
+        .features-list li::before { content: "⚡"; color: #38bdf8; font-size: 10px; }
 
         .sample-link {
-            display: inline-block; font-size: 12px; color: #a855f7; text-decoration: none; margin-bottom: 16px; font-weight: 600; cursor: pointer;
+            display: inline-block; font-size: 12px; color: #38bdf8; text-decoration: none; margin-bottom: 16px; font-weight: 600; cursor: pointer;
             transition: color 0.2s;
         }
-        .sample-link:hover { color: #d8b4fe; text-decoration: underline; }
+        .sample-link:hover { color: #7dd3fc; text-decoration: underline; }
 
         .card-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 16px; }
         .price-tag { font-size: 13px; font-weight: 700; background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
         button {
             padding: 10px 20px; background: var(--accent-gradient); color: white; border: none; border-radius: 14px;
-            font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            font-size: 12px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
             transition: all 0.3s ease;
         }
-        button:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        button:hover { background: var(--btn-hover); transform: translateY(-1px); }
         button:active { transform: scale(0.97); }
 
         /* Modal oyna dizayni */
         .modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(7, 9, 14, 0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
-            animation: fadeIn 0.3s ease;
+            background: rgba(2, 4, 8, 0.85); backdrop-filter: blur(15px); z-index: 1000; justify-content: center; align-items: center; padding: 20px;
         }
         .modal-content {
-            background: #0f1423; border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 24px; padding: 24px; width: 100%; max-width: 400px;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            background: #090e17; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 24px; padding: 24px; width: 100%; max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.9);
         }
         .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
         .modal-header h3 { font-size: 17px; color: #fff; font-weight: 700; }
@@ -148,43 +148,39 @@
             width: 100%; padding: 12px 16px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--card-border);
             border-radius: 12px; color: #fff; font-size: 14px; outline: none; transition: border-color 0.3s;
         }
-        .form-group input:focus { border-color: #8b5cf6; box-shadow: 0 0 12px rgba(139, 92, 246, 0.25); }
+        .form-group input:focus { border-color: #0ea5e9; box-shadow: 0 0 12px rgba(14, 165, 233, 0.3); }
 
         .portfolio-item, .admin-order-item {
-            background: rgba(255, 255, 255, 0.025); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 14px; margin-bottom: 10px;
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 14px; padding: 14px; margin-bottom: 10px;
         }
         .portfolio-item { cursor: pointer; transition: border-color 0.2s; }
-        .portfolio-item:hover { border-color: #8b5cf6; }
-        .portfolio-item h4, .admin-order-item h4 { font-size: 13px; color: #c084fc; margin-bottom: 4px; font-weight: 600; }
+        .portfolio-item:hover { border-color: #0ea5e9; }
+        .portfolio-item h4, .admin-order-item h4 { font-size: 13px; color: #38bdf8; margin-bottom: 4px; font-weight: 600; }
         .portfolio-item p, .admin-order-item p { font-size: 12px; color: var(--text-muted); }
 
         /* Suzuvchi aloqa tugmasi */
         .floating-btn {
-            position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #22c55e, #16a34a); color: white;
+            position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #0ea5e9, #2563eb); color: white;
             width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px;
-            box-shadow: 0 6px 25px rgba(34, 197, 94, 0.5); z-index: 100; text-decoration: none; transition: transform 0.3s;
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.5); z-index: 100; text-decoration: none; transition: transform 0.3s;
         }
         .floating-btn:hover { transform: scale(1.1); }
-
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
-    <div class="ambient-light light-1"></div>
-    <div class="ambient-light light-2"></div>
+    <div class="cyber-glow glow-one"></div>
+    <div class="cyber-glow glow-two"></div>
 
     <div class="container">
         <header>
-            <div class="brand-pill">✨ CQ STUDIO VIP</div>
-            <h1>Elite Digital Agency</h1>
-            <p>Biznesingiz uchun elita darajasidagi raqamli yechimlar</p>
+            <div class="brand-badge">⚡ NEXT-GEN STUDIO</div>
+            <h1>Digital Solutions</h1>
+            <p>Kelajak texnologiyalari va mukammal dizayn</p>
         </header>
 
-        <div class="elite-banner">
-            <h4>👑 MAXSUS VIP AKSIYA</h4>
-            <p>Hozir buyurtma bering va shaxsiy menejer hamda 20% chegirmani qo'lga kiriting!</p>
+        <div class="cyber-banner">
+            <h4>🚀 CYBER AKSIYA</h4>
+            <p>Hozir buyurtma bering va raqamli transformatsiyani mutlaqo bepul maslahat bilan boshlang!</p>
         </div>
 
         <div class="categories" id="categoriesContainer">
@@ -295,7 +291,7 @@
     <div id="adminModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
-                <h3>📊 VIP Admin Panel (Buyurtmalar)</h3>
+                <h3>📊 Admin Panel (Buyurtmalar)</h3>
                 <button class="close-btn" onclick="closeAdminModal()">&times;</button>
             </div>
             <div id="adminModalBody">
